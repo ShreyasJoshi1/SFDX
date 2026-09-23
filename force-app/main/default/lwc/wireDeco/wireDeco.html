@@ -1,0 +1,13 @@
+<template>
+<lightning-card title="Wire Decorator to Contact details using account name">
+    <lightning-input label="Account Name" onchange={changeValue}></lightning-input>
+    <template if:false={condata}>
+     <lightning-datatable
+        key-field="id"
+        data={condata.data}
+        columns={col}
+    >
+    </lightning-datatable>
+    </template>
+</lightning-card>
+</template>

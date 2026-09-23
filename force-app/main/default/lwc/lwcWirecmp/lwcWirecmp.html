@@ -1,0 +1,12 @@
+<template>
+<lightning-card title='Wire decorator'>
+    <lightning-input label='Search Text' value={searchKey} onchange={changeValue}></lightning-input>
+    <lightning-button label='Search Records' onclick={searchRecords}></lightning-button>
+    <lightning-datatable
+    key-field="id"
+    data={accdata}
+    columns={col}
+    >
+    </lightning-datatable>
+</lightning-card>
+</template>

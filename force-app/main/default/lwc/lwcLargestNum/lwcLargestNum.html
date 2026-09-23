@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title = 'Largest of 3 numbers'>
+        <lightning-input label='enter the first number' onchange={changeFNum}></lightning-input>
+       <lightning-input label='enter the second number' onchange={changeSNum}></lightning-input>
+       <lightning-input label='enter the third number' onchange={changeTNum}></lightning-input>
+       <lightning-button label='findLargest' onclick={findLargest}></lightning-button>
+        Result is {result}
+
+    </lightning-card>
+</template>
