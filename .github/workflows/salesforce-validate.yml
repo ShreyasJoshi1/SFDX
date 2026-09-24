@@ -20,13 +20,6 @@ jobs:
         run: |
           npm install sfdx-git-delta --global
 
-      - name: Generate Delta
-        run: |
-          mkdir delta
-          sf sgd source delta \
-            --from "origin/main" \
-            --to "HEAD" \
-            --output "delta"
 
       - name: Authenticate Org
         run: |
@@ -35,6 +28,15 @@ jobs:
             --sfdx-url-file auth.txt \
             --alias target-org
           rm auth.txt  
+
+      - name: Generate Delta
+        run: |
+          mkdir delta
+          sf sgd source delta \
+            --from "origin/main" \
+            --to "HEAD" \
+            --output-dir "delta" \
+            --generate-delta    
 
       - name: Validate Changes
         run: |
