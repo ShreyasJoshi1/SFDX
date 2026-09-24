@@ -29,6 +29,6 @@ jobs:
           sf project deploy start \
             --source-dir force-app \
             --target-org target-org \
-            --check-only \
+            --dry-run \
             --test-level RunLocalTests \
             --wait 120
