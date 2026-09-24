@@ -12,13 +12,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install Salesforce CLI
         run: npm install @salesforce/cli --global
 
-      - name: Install sfdx-git-delta
+      - name: Install SGD
         run: |
-          npm install sfdx-git-delta --global
+            echo y | sf plugins install sfdx-git-delta
+            sf plugins
+            sf sgd --help
+
+      - name: Generate Delta
+        run: |
+          mkdir delta
+          sf sgd source delta \
+            --from "origin/main" \
+            --to "HEAD" \
+            --output-dir "delta" \
+            --generate-delta          
 
 
       - name: Authenticate Org
@@ -29,14 +42,6 @@ jobs:
             --alias target-org
           rm auth.txt  
 
-      - name: Generate Delta
-        run: |
-          mkdir delta
-          sf sgd source delta \
-            --from "origin/main" \
-            --to "HEAD" \
-            --output-dir "delta" \
-            --generate-delta    
 
       - name: Validate Changes
         run: |
