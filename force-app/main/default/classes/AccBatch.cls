@@ -7,7 +7,7 @@ return Database.getQueryLocator(query);
 public void execute(Database.BatchableContext bc, List<Account> accList){
 // process each batch of records
 for(Account acc:accList){
-acc.Rating='Cold';
+acc.Rating='Hot';
 }
 Database.update(accList,false);
 }
