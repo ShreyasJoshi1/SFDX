@@ -1,0 +1,52 @@
+name: Salesforce Validate
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Salesforce CLI
+        run: npm install @salesforce/cli --global
+
+      - name: Install SGD
+        run: |
+            echo y | sf plugins install sfdx-git-delta
+            sf plugins
+            sf sgd --help
+
+      - name: Generate Delta
+        run: |
+          mkdir delta
+          sf sgd source delta \
+            --from "origin/main" \
+            --to "HEAD" \
+            --output-dir "delta" \
+            --generate-delta          
+
+
+      - name: Authenticate Org
+        run: |
+          echo "${{ secrets.SFDX_AUTH_URL }}" > auth.txt
+          sf org login sfdx-url \
+            --sfdx-url-file auth.txt \
+            --alias target-org
+          rm auth.txt  
+
+
+      - name: Validate Changes
+        run: |
+          sf project deploy start \
+            --source-dir delta \
+            --target-org target-org \
+            --test-level NoTestRun \
+            --wait 120
