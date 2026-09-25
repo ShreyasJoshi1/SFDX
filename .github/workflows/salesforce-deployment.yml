@@ -28,10 +28,10 @@ jobs:
         run: |
           mkdir delta
           sf sgd source delta \
-            --from "origin/main" \
-            --to "HEAD" \
-            --output-dir "delta" \
-            --generate-delta          
+            --from "${{ github.event.before }}" \
+            --to "${{ github.sha }}" \
+            --output-dir delta \
+            --generate-delta     
 
 
       - name: Authenticate Org
