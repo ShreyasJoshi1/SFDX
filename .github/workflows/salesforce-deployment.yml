@@ -46,7 +46,7 @@ jobs:
       - name: Validate Changes
         run: |
           sf project deploy start \
-            --source-dir delta \
+            --manifest delta/package/package.xml \
             --target-org target-org \
             --test-level NoTestRun \
             --wait 120
