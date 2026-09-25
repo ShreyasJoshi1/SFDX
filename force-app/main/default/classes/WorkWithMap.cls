@@ -6,6 +6,7 @@ public class WorkWithMap {
         mapval.put('101','Refrigerator');
         mapval.put('102','iPhone');
         mapval.put('103','laptop');
+        mapval.put('104','TV');
         
         system.debug('Map Values '+mapval);
          if(mapval.isEmpty())
@@ -20,6 +21,7 @@ public class WorkWithMap {
         if(mapval.containsKey('103'))
         {
             mapval.remove('102');
+            mapval.remove('104');
         }
         System.debug('New Map Values are after removing iPhone'+mapval);
     }

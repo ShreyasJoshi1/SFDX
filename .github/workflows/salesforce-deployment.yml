@@ -48,6 +48,5 @@ jobs:
           sf project deploy start \
             --source-dir delta \
             --target-org target-org \
-            --dry-run \
             --test-level NoTestRun \
             --wait 120
