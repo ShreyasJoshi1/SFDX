@@ -3,7 +3,6 @@
     <fullName>PlatinumandGoldSLACustomers</fullName>
     <columns>ACCOUNT.NAME</columns>
     <columns>ACCOUNT.SITE</columns>
-    <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
     <columns>Active__c</columns>
     <columns>ACCOUNT.ADDRESS1_STATE</columns>
     <columns>ACCOUNT.PHONE1</columns>
