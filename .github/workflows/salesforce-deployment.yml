@@ -1,12 +1,12 @@
-name: Salesforce Validate
+name: Salesforce Deployment
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-  validate:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
